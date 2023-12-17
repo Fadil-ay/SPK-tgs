@@ -5,67 +5,58 @@
 @endsection
 
 @section('content')
-    <div class="content-body">
-        <div class="container-fluid">
-            <!-- row -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Data Sub Kriteria</h4>
-                        </div>
 
-                        <!-- Button trigger modal -->
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary mb-3 mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                        + Tambah Data
-                                    </button>
-                                </div>
+<div class="content-body">
+            <div class="container-fluid">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Data Sub Kriteria</h4>
                             </div>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-bordered table-striped display" style="min-width: 845px">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Kriteria</th>
-                                            <th>Sub-Kriteria</th>
-                                            <th>Jenis</th>
-                                            <th>Kompetensi</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $no = 1;
-                                        @endphp
-                                            <tr class="odd">
-                                            <td>1</td>
-                                            <td>Tes</td>
-                                            <td>Tes</td>
-                                            <td>Tes</td>
-                                            <td>Tes</td>
-                                            <td>
-                                                <a href="#"class="btn btn-warning">
-                                                    <i class="fa fa-pencil fa-fw"></i> Edit
-                                                </a>
-                                                <a href="#"class="btn btn-danger">
-                                                    <i class="fa fa-trash-o fa-fw"></i> Hapus
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="card-body">
+                                <a href="{{route('subkriteria.create')}}" class="btn btn-info mb-2">
+                                    <i class="fa fa-plus"></i> Tambah Data
+                                </a>
+                                <div class="table-responsive">
+                                    <table id="example" class="table table-bordered table-striped display" style="min-width: 845px">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Kriteria</th>
+                                                    <th>Sub-Kriteria</th>
+                                                    <th>Jenis</th>
+                                                    <th>Kompetensi</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php($no = 1)
+                                                @foreach ($subkriteria as $dd)
+                                                    <tr class="odd">
+                                                        <td>{{ $no++}}</td>
+                                                        <td>{{ $dd->nama_kriteria}}</td>
+                                                        <td>{{ $dd->sub_kriteria}}</td>
+                                                        <td>{{ $dd->jenis}}</td>
+                                                        <td>{{ $dd->kompetensi}}</td>
+                                                        <td>
+                                                            <a href="{{route('subkriteria.editdata', $dd->id)}}" class="btn btn-warning">
+                                                                <i class="fa fa-pencil fa-fw"></i> Update
+                                                            </a>
+                                                            <a href="{{route('subkriteria.deletdata', $dd->id)}}" class="btn btn-danger">
+                                                                <i class="fa fa-trash-o fa-fw"></i> Hapus
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 @endsection
